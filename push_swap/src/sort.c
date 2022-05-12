@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akami <akami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 12:53:20 by akami             #+#    #+#             */
-/*   Updated: 2022/03/31 12:53:21 by akami            ###   ########.fr       */
+/*   Created: 2022/03/31 12:53:40 by akami             #+#    #+#             */
+/*   Updated: 2022/03/31 12:53:41 by akami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ft_lstadd_back(t_stack **stack, t_stack *new)
+void	ft_sort(t_stacks *stacks)
 {
-	t_stack	*iter;
-
-	if (new == (void *)0)
-		return ;
-	if (*stack)
+	stacks->b = (void *)0;
+	stacks->b_len = 0;
+	if (!ft_check_sort(stacks->a, stacks->a_len))
 	{
-		iter = *stack;
-		while (iter->next != (void *)0)
-			iter = iter->next;
-		iter->next = new;
+		if (stacks->a_len == 5)
+			ft_create_stack_b_from_five_len(stacks);
+		else
+			ft_create_stack_b(stacks);
+		ft_sort_tree(&stacks->a);
+		ft_push_from_b_to_a(stacks);
 	}
-	else
-		*stack = new;
+	ft_final_sort(&stacks->a, stacks->a_len);
 	return ;
 }

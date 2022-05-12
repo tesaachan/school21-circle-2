@@ -1,19 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akami <akami@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/31 12:53:38 by akami             #+#    #+#             */
+/*   Updated: 2022/03/31 12:53:39 by akami            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
-int main(const int argc, const char **argv)
+static void	ft_clean_stack(t_stack **stack)
 {
-    array_t     array;
-    stacks_t    stacks;
+	t_stack	*tmp;
 
-    if (array_set_unsorted(&array, argc, argv) == -1)
-        error_message("wrong input");
-    if (array_set_sorted(&array) == -1)
-        error_message("contains duplicates");
-    stacks_init_stack_a(&stacks, &array);
-    if (stacks_is_a_sorted(&stacks) == 0)
-        stacks_partial_sort(&stacks);
-    stacks_final_sort(&stacks);
-    free(array.sorted);
-    stacks_free(&stacks);
-    return (0);
+	while (*stack != (void *)0)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
+	return ;
+}
+
+int	main(int argc, char **argv)
+{
+	t_arrays	arrays;
+	t_stacks	stacks;
+
+	if (argc == 1)
+		return (1);
+	arrays.length = ft_create_unsort_arr(argc, argv, &arrays.unsorted);
+	ft_create_sort_arr(&arrays);
+	stacks.a = ft_create_stack_a(&arrays);
+	stacks.a_len = arrays.length;
+	ft_sort(&stacks);
+	free(arrays.sorted);
+	ft_clean_stack(&stacks.a);
+	return (0);
 }

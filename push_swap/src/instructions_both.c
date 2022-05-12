@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   instructions_both.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: georgy <georgy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akami <akami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 15:35:02 by georgy            #+#    #+#             */
-/*   Updated: 2022/03/30 14:29:45 by georgy           ###   ########.fr       */
+/*   Created: 2022/03/31 12:53:33 by akami             #+#    #+#             */
+/*   Updated: 2022/03/31 12:53:34 by akami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	ft_strlen(const char *str)
+void	ft_rotate_both(t_stack **a, t_stack **b)
 {
-	int	len;
+	ft_rotate(a, "");
+	ft_rotate(b, "");
+	ft_print_note("rr\n");
+	return ;
+}
 
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	return (len);
+void	ft_reverse_rotate_both(t_stack **a, t_stack **b)
+{
+	ft_reverse_rotate(a, "");
+	ft_reverse_rotate(b, "");
+	ft_print_note("rrr\n");
+	return ;
 }

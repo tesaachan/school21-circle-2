@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: georgy <georgy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akami <akami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 15:33:37 by georgy            #+#    #+#             */
-/*   Updated: 2022/03/29 13:16:25 by georgy           ###   ########.fr       */
+/*   Created: 2022/03/31 12:53:18 by akami             #+#    #+#             */
+/*   Updated: 2022/03/31 12:53:19 by akami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 
 int	ft_atoi(const char *str)
 {
+	unsigned long long	res;
 	int					sign;
-	unsigned long long	value;
 
+	res = 0;
 	sign = 1;
-	value = 0;
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\v'
-		|| *str == '\f' || *str == '\r')
-		str++;
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-			sign = -1;
+			sign *= -1;
 		str++;
 	}
 	while (*str >= '0' && *str <= '9')
-		value = value * 10 + *str++ - '0';
-	if (value >= LLONG_MAX)
 	{
-		if (sign == -1)
-			return (0);
-		return (-1);
+		res = res * 10 + (*str - '0');
+		str++;
 	}
-	return ((int)(sign * value));
+	if ((long long int)(res * sign) > 2147483647 ||
+		(long long int)(res * sign) < -2147483648)
+		ft_print_error();
+	return (res * sign);
 }

@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: georgy <georgy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akami <akami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 15:34:15 by georgy            #+#    #+#             */
-/*   Updated: 2022/03/29 19:50:14 by georgy           ###   ########.fr       */
+/*   Created: 2022/03/31 12:53:24 by akami             #+#    #+#             */
+/*   Updated: 2022/03/31 12:53:25 by akami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	ft_lstsize(st_t *lst)
+size_t	ft_lstsize(t_stack *stack)
 {
-	int	i;
+	size_t	size;
 
-	i = 0;
-	while (lst)
+	size = 0;
+	while (stack != (void *)0)
 	{
-		lst = lst->next;
-		i++;
+		size++;
+		stack = stack->next;
 	}
-	return (i);
+	return (size);
 }

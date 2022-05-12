@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: georgy <georgy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akami <akami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 15:34:13 by georgy            #+#    #+#             */
-/*   Updated: 2022/03/29 19:50:07 by georgy           ###   ########.fr       */
+/*   Created: 2022/03/31 12:54:57 by akami             #+#    #+#             */
+/*   Updated: 2022/03/31 12:54:58 by akami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-st_t	*ft_lstnew(void *content)
+t_stack	*ft_lstnew(size_t value)
 {
-	st_t	*temp;
+	t_stack	*new;
 
-	temp = (st_t *)malloc(sizeof(st_t));
-	if (temp == NULL)
-		return (NULL);
-	temp->val = content;
-	temp->next = NULL;
-	return (temp);
+	new = (t_stack *)malloc(sizeof(t_stack));
+	if (new == (void *)0)
+		ft_print_error();
+	new->value = value;
+	new->next = (void *)0;
+	return (new);
 }
